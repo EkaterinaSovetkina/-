@@ -150,6 +150,12 @@ where valid_from<='2021-02-03 00:00:00' and coalesce(valid_to, '2100-01-01')>'20
 
 *Выбрать самую актуальную запись для каждого экземпляра таблицы*
 
+Создадим таблицу Counterparty_new и заполним её.
+
+Результат
+
+![3](https://user-images.githubusercontent.com/108063450/192118491-4a1c257f-5fb2-4139-8450-d84d0de76ee6.png)
+
 
 
 
