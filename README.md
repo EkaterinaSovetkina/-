@@ -103,6 +103,35 @@ ORDER BY Number ASC, ValueDate ASC;
 Результат
 ![Запрос 1](https://user-images.githubusercontent.com/108063450/192090798-c8e9b6a1-69d4-4324-8e49-25496353f2ac.png)
 
+# Задача 2
+
+Определить статус контрагентов на 03 февраля 2021г.
+
+Создала таблицу Counterparty и заполнила её. Максимальное количество символов в столбце Counterparty_id нашла через функцию =ДЛСТР().
+
+``` js
+create table Counterparty (
+Counterparty_id varchar(18),
+status varchar(9),
+valid_from datetime,
+valid_to datetime
+);
+``` 
+
+``` js
+INSERT INTO Counterparty (Counterparty_id, status, valid_from, valid_to) VALUES ('2356aa563bb5874cc','active','2021-02-01 00:00:00','2021-02-03 00:00:00');
+INSERT INTO Counterparty (Counterparty_id, status, valid_from, valid_to) VALUES ('2356aa563bb5874cc','defaulter','2021-02-03 00:00:00','2021-02-06 00:00:00');
+INSERT INTO Counterparty (Counterparty_id, status, valid_from, valid_to) VALUES ('2356aa563bb5874cc','removed','2021-02-06 00:00:00',null);
+...
+``` 
+
+Результат
+
+![table counterparty](https://user-images.githubusercontent.com/108063450/192091276-9c2d223d-98a0-4938-a337-19abea5151a4.png)
+
+## SQL-запрос на решение задачи
+
+
 
 
  
