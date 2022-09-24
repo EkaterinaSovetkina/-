@@ -134,6 +134,26 @@ INSERT INTO Counterparty (Counterparty_id, status, valid_from, valid_to) VALUES 
 
 ## SQL-запрос на решение задачи 2
 
+``` js
+select Counterparty_id, status
+from Counterparty
+where valid_from<='2021-02-03 00:00:00' and coalesce(valid_to, '2100-01-01')>'2021-02-03 00:00:00';
+```
+
+Результат
+
+![2](https://user-images.githubusercontent.com/108063450/192117894-20df5338-f018-48a9-b2da-e905d27068cb.png)
+
+
+
+# Задача 3
+
+*Выбрать самую актуальную запись для каждого экземпляра таблицы*
+
+
+
+
+
 
 
 
