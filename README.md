@@ -135,9 +135,9 @@ INSERT INTO Counterparty (Counterparty_id, status, valid_from, valid_to) VALUES 
 ## SQL-запрос на решение задачи 2
 
 ``` js
-select Counterparty_id, status
-from Counterparty
-where valid_from<='2021-02-03 00:00:00' and coalesce(valid_to, '2100-01-01')>'2021-02-03 00:00:00';
+SELECT Counterparty_id, status
+FROM Counterparty
+WHERE valid_from<='2021-02-03 00:00:00' AND coalesce(valid_to, '2100-01-01')>'2021-02-03 00:00:00';
 ```
 
 Результат
@@ -155,6 +155,21 @@ where valid_from<='2021-02-03 00:00:00' and coalesce(valid_to, '2100-01-01')>'20
 Результат
 
 ![3](https://user-images.githubusercontent.com/108063450/192118491-4a1c257f-5fb2-4139-8450-d84d0de76ee6.png)
+
+## SQL-запрос на решение задачи 3
+
+``` js
+SELECT Counterparty_id, name, address, version
+FROM Counterparty_new
+WHERE version IN 
+    (SELECT MAX(version)
+    FROM Counterparty_new
+    GROUP BY Counterparty_id);
+```
+
+Результат
+
+![3 1](https://user-images.githubusercontent.com/108063450/192141358-eb5575c6-d895-4b88-9802-6dafd16efe82.png)
 
 
 
