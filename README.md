@@ -158,7 +158,7 @@ WHERE valid_from<='2021-02-03 00:00:00' AND coalesce(valid_to, '2100-01-01')>'20
 
 ## SQL-запрос на решение задачи 3
 
-###БЫЛО
+### БЫЛО
 
 ``` js
 SELECT Counterparty_id, name, address, version
@@ -173,7 +173,7 @@ WHERE version IN
 
 ![3 1](https://user-images.githubusercontent.com/108063450/192141358-eb5575c6-d895-4b88-9802-6dafd16efe82.png)
 
-###ИСПРАВЛЕНО
+### ИСПРАВЛЕНО
 
 ``` js
 select Counterparty_id, name, address, MAX(version)
