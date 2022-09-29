@@ -29,16 +29,23 @@
 ## SQL-запрос на решение задачи 1
 
 ``` js
-SELECT DISTINCT Number AS 'Номер_сделки', DealDate AS 'Дата_заключения_сделки', 
-ActualDate AS 'Бизнес_дата_события', Anount AS 'Сумма планового платежа', Currency AS 'Валюта_планового_платежа', ValueDate AS 'Плановая_дата_исполнения_платежа'
-FROM Trade T INNER JOIN Cashflow C 
+select T.Trade_ID AS 'Номер_сделки', T.DealDate AS 'Дата_заключения_сделки', 
+T.ActualDate AS 'Бизнес_дата_события', F.Anount*F.Input+C.Anount*C.Rate AS 'Сумма планового платежа', C.Currency AS 'Валюта_планового_платежа', 
+C.ValueDate AS 'Плановая_дата_исполнения_платежа', T.Status as 'Статус', MAX(T.Version), MAX(F.Version), MAX(C.Version)
+FROM Trade T INNER JOIN Fee F 
+ON T.Trade_ID=F.Trade_fk
+INNER JOIN Cashflow C 
 ON T.Trade_ID=C.Trade_ID
-WHERE ActualDate>'2021-04-01 00:00:00' AND Status='VERIFIED' AND Currency='RUB'
-ORDER BY Number ASC, ValueDate ASC;
+WHERE T.ActualDate>'2021-04-01 00:00:00' AND T.Status='VERIFIED' AND C.Currency='RUB'
+ORDER BY T.Number ASC, T.DealDate ASC;
 ```
 
+Пояснение: сумму платежа считала как произведение номинальной суммы на ставку комиссии плюс произведение номинальной суммы на ставку платежа F.Anount*F.Input+C.Anount*C.Rate AS 'Сумма планового платежа'
+
+
 Результат
-![Запрос 1](https://user-images.githubusercontent.com/108063450/192090798-c8e9b6a1-69d4-4324-8e49-25496353f2ac.png)
+
+![sql1](https://user-images.githubusercontent.com/108063450/192947806-5b85ebd8-32b2-4990-9acd-e05c2d528c89.png)
 
 
 
