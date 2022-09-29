@@ -15,79 +15,15 @@
 
 ![физическая](https://user-images.githubusercontent.com/108063450/192090499-e91db009-4922-48a6-9f56-4f3d19721e75.png)
 
-## Скрипт на создание таблиц
 
-Создала таблицы в приложении DBeaver (MySQL).
+Создала и заполнила таблицы Trade, Fee и Cashflow в приложении DBeaver (MySQL).
 
-``` js
-CREATE TABLE `Trade`
-(
- `Trade_ID`       int primary key NOT NULL ,
- `Number`         int NOT NULL ,
- `Status`         varchar(10) NOT NULL ,
- `MurexID`        int NOT NULL ,
- `DealDate`       datetime NOT NULL ,
- `CounterPartyID` int NOT NULL ,
- `ActualDate`     datetime NOT NULL ,
- `FixDate`        datetime NOT NULL ,
- `PremiumType`    varchar(10) NOT NULL ,
- `SettlementType` varchar(10) NOT NULL ,
- `Version`        int NOT NULL ,
- `Product_fk`     int NOT null,
- CONSTRAINT PK_Trade_ID unique (`Trade_ID`,`Version`)
- );
- ```
- 
- Результат
- 
- ![table trade](https://user-images.githubusercontent.com/108063450/192090675-78d541c2-1a9b-44fd-b448-231d1ad8c935.png)
+![trade](https://user-images.githubusercontent.com/108063450/192942722-28e47034-b84b-4ee2-88d1-bdb69c025d52.png)
 
+![Fee](https://user-images.githubusercontent.com/108063450/192942747-cf584abc-36cd-4743-b7a2-3572552a195e.png)
 
-``` js
-CREATE TABLE `Fee`
-(
- `Fee_ID`         int  primary key NOT NULL ,
- `Notional`       decimal(8,2) NOT NULL ,
- `Trade_fk`       int NOT NULL ,
- `Product_fk`     int NOT NULL ,
- `Anount`         decimal(8,2) NOT NULL ,
- `ValueDate`      datetime NOT NULL ,
- `FeeType`        varchar(15) NOT NULL ,
- `CounterPartyID` int NOT NULL ,
- `Currency`       varchar(3) NOT NULL ,
- `Input`          decimal(8,2) NOT NULL ,
- `Version`        int NOT NULL ,
- CONSTRAINT PK_Fee_ID unique (`Fee_ID`,`Version`),
- foreign key (`Trade_fk`) references Trade (Trade_ID)
- );
- ```
- 
-Результат
- ![table fee](https://user-images.githubusercontent.com/108063450/192090691-83bce71e-65e0-4309-9034-e917e0920dab.png)
+![cashflow](https://user-images.githubusercontent.com/108063450/192942770-978b872d-e24d-45f8-8ed3-33affe1d7169.png)
 
-
-``` js
-CREATE TABLE `Cashflow`
-(
- `Cashflow_ID`    int primary key NOT NULL ,
- `Notional`       decimal(8,2) NOT NULL ,
- `Trade_ID`       int NOT NULL ,
- `Product_fk`     int NOT NULL ,
- `Anount`         decimal(8,2) NOT NULL ,
- `ValueDate`      datetime NOT NULL ,
- `TransferType`   varchar(9) NOT NULL ,
- `CounterPartyID` int NOT NULL ,
- `Currency`       varchar(3) NOT NULL ,
- `Version`        int NOT NULL ,
- `Rate`           decimal(5,2) NOT NULL ,
- CONSTRAINT PK_Cashflow_ID unique (`Cashflow_ID`,`Version`),
- foreign key (`Trade_ID`) references Trade (Trade_ID)
- );
- ```
- 
- Результат
- 
- ![table cashflow](https://user-images.githubusercontent.com/108063450/192090712-de4b33c8-cb58-49b6-8e57-7bb5b3180be3.png)
 
 
 ## SQL-запрос на решение задачи 1
